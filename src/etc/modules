@@ -43,6 +43,7 @@ ip_tables
 #sit
 #veth
 #vxlan
+sctp
 
 ## Block storage
 ## Present for config_drive support
