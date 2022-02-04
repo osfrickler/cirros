@@ -53,7 +53,9 @@ fi
 set -e
 set -o pipefail
 
-OUT="$PWD/../build-$VER"
+if [ -z $OUT ]; then
+    OUT="$PWD/../build-$VER"
+fi
 LOGFILE="$OUT/date.txt"
 export TMPDIR="$OUT/tmp"
 mkdir -p "$OUT" "$TMPDIR"
@@ -305,6 +307,9 @@ if [ "true" = "${BOOTTEST}" ]; then
         logevent "end test-boot $arch ${img##*/}"
     done
 fi
+
+ls -l "$OUT"
+ls -l "$OUT/release"
 
 msg "entire process took $SECONDS seconds"
 logevent "end $mainargs" "$tstart"

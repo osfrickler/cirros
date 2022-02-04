@@ -1,0 +1,12 @@
+- hosts: all
+  roles:
+    - bindep
+    - ensure-output-dirs
+  tasks:
+    - name: Create build dir
+      become: true
+      file:
+        path: /opt/build
+        owner: "{{ ansible_user }}"
+        state: directory
+        mode: '0755'

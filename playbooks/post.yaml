@@ -1,0 +1,7 @@
+- hosts: all
+  roles:
+    - stage-output
+  vars:
+    stage_dir: "{{ ansible_user_dir }}/zuul-output"
+    zuul_copy_output:
+      '/opt/build/release': artifacts

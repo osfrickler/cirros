@@ -1,0 +1,13 @@
+- hosts: all
+  tasks:
+    - name: Build cirros and test it
+      command:
+        chdir: "{{ zuul.project.src_dir }}"
+        argv:
+          - env
+          - ARCHES={{ ARCHES }}
+          - BOOTTEST=true
+          - OUT=/opt/build
+          - QUIET=1
+          - bin/build-release
+          - daily

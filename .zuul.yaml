@@ -1,0 +1,30 @@
+- job:
+    name: cirros-build-x86_64
+    nodeset:
+      nodes:
+        - name: build-node
+          label: ubuntu-focal
+    pre-run: playbooks/system-setup.yaml
+    run: playbooks/build.yaml
+    post-run: playbooks/post.yaml
+    timeout: 7200
+    vars:
+      ARCHES: x86_64
+
+
+- job:
+    parent: cirros-build-x86_64
+    name: cirros-build-aarch64
+    vars:
+      ARCHES: aarch64
+
+- project:
+    default-branch: main
+    check:
+      jobs:
+        - cirros-build-aarch64
+        - cirros-build-x86_64
+    gate:
+      jobs:
+        - cirros-build-aarch64
+        - cirros-build-x86_64
