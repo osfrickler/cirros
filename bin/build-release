@@ -216,7 +216,7 @@ if $parallel; then
         "$0" "$VER" build_arch quiet {} ::: ${ARCHES}
 else
     for arch in ${ARCHES}; do
-        build_arch "$arch"
+        build_arch quiet "$arch"
     done;
 fi
 
