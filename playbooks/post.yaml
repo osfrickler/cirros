@@ -5,4 +5,6 @@
     stage_dir: "{{ ansible_user_dir }}/zuul-output"
     zuul_copy_output:
       '/opt/build/release': artifacts
-      '/opt/build/build-*.log': logs_txt
+      '/opt/build/date.txt': logs
+      '/opt/build/build-aarch64.log': logs_txt
+      '/opt/build/build-x86_64.log': logs_txt
