@@ -1,0 +1,17 @@
+#!/bin/sh
+case "$1" in
+    start)
+        for i in 1 2 3 4 5; do
+            if dhcpcd -U |egrep -q 'reason=(BOUND|ROUTERADVERT)'; then
+                exit
+            fi
+            echo '### Waiting for network to be ready ###'
+            sleep 1
+        done
+        echo '### Failed to set up networking, good luck ###'
+        exit 1
+    stop) :;;
+    *) echo "unknown argument ${1}" 1>&2;;
+esac
+
+# vi: ts=4 noexpandtab
